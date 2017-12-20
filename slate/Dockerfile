@@ -1,6 +1,6 @@
 FROM ruby:alpine
 
-COPY Gemfile /app
+COPY Gemfile /app/
 WORKDIR /app
 
 RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.4/main/" > /etc/apk/repositories && apk update && apk add nodejs alpine-sdk \
