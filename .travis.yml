@@ -1,0 +1,29 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+  - secure: EDYttLnypPyvXBISx4eXQIW+rAy8KUgNpg3v7CaIKbXq5PLH9zW4nPGHLQiFUVdNIkeA/amnyeZ5h40PPt2alQq5+jxGP0zRqS59/VjOpcuUMY89vTYgPWouawvZBxawGPfIwREgD1tkirfJgaFD8OTRzAkOok4kltSeVE9IdmO3QXEeMJOz4LJgX/YFyr/l1pw7kHXS3Dia2TtOK64GtMe9XwF9ZnSD8hRdfAkjhcmhMDrOpLXoVvgjGqgwysAsgVYTT8vbe/5QZuOTS605jKKRVk7h1r+IN+X03zm5TL7EI6XJ6kWZM5TUmQ8gczLsAs4llsYR6lVcgMQu7YemUTr0XSXIqv6es3M8OV1/P27E0UupGA0MAQgojhFUv3Y2Tu/qiFgjYLcnt12h9hXXLh/HW9Ey3x8LLUZxQdksUj0PpfRkVdoEgwLcYyLZs8TGT4INtty/qztxoHKQKil43Zkmhh7369SyI+N0UQGg1GHGoX7L913Kb+aJw5HTkn+QEngElyBLtbTQKtbFfWzxAOZSg6WmgU53msYXP76fNJJrLh5i04CmGym/nk6BuVf05X+a6/qnmQfCVhrNdiu9vu4tAwV5jaOX3zoQ8+8kkNcKsL2CVTkp80aQEh6ITgABrvNkQhgi8fvQJS4iDKryY/kZrh1BDGC2T9bMb63s3gk=
+  - secure: azkAeIBRcwhG9JpX8i0fNO/R6IYuHu3xGp+eG4BOKzisHE7x3n2b32C9TTS4zxI8vb9zpbON5mBMqSOVfkDM5ashHusCbR3ZqxksN+w3DT/GOErB2Tg2XaoETjNkrdHfGgtmkDkfWYyRyZoUQ1OQYxdbuvaa8WaicaoaZb/5OuUWVJ49U4lcM6ZeuKOq+g6CSVxTfyroUhfxqRM/2o8+GJMIOeAFi8dSg8fQCL2ZY4MlDIeDc9daznLgDH+5cWkk4yb2R3QC5VNf4Ni4dhKVEArfCWWWEf7IL6jVWcyKA0O8UdcjNp5WYRBQWjvDGkQbfS0MWH3iMkSdUtSrZ/TXFsffusPOhFalFawcRFflWBkr/gEikgb2/EAY6K7AlYQRuSmfMKxQxpcOnsjyHZdrLidSxiVzeIfuoZjT3gC0VjwwhJN96Gcq60+leH3HxH3+KYGOORr3XQfU1ndOdNB/lhiZVFgokonIVr/IoReALgsCMz/jdHXuaVUSNG4DPyUezYQUepKGswuPnrw6q9tqkg4VqOZOUmcuYVmhtH1KMiiJpCal4u2j4l7WV7a1yEfL32QUPQd4wWq7HSJPdnBJsAfDQyUdGZEm/cPrR2ynbmAsOfV1mtptwuXpPWwzLC1P1+5Qix3kVGeKaKfvyXuYN2Z+zPVZi3rCjnebhRxWUVo=
+
+
+script:
+  - docker build -t ficapy/python36 -f python36/Dockerfile .
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+
+deploy:
+  provider: script
+  script:
+    - docker push ficapy/python36
+  on:
+    branch: master
+
+
+
