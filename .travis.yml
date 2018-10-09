@@ -21,13 +21,10 @@ script:
 after_script:
   - docker images
 
-before_deploy:
-  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-
 
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
+      docker login -u $DOCKER_USER -p $DOCKER_PASS ;
       docker push ficapy/python36 ;
       docker push ficapy/docker ;
       docker push ficapy/npm ;
