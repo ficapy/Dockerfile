@@ -16,6 +16,7 @@ env:
 script:
   - docker build -t ficapy/python36 -f python36/Dockerfile .
   - docker build -t ficapy/docker -f docker/Dockerfile .
+  - docker build -t ficapy/npm -f npm/Dockerfile .
 
 after_script:
   - docker images
@@ -28,6 +29,7 @@ deploy:
   script:
     - docker push ficapy/python36
     - docker push ficapy/docker
+    - docker push ficapy/npm
   on:
     branch: master
 
