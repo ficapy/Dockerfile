@@ -25,11 +25,9 @@ before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
 
 deploy:
-  provider: script
-  script:
-    - docker push ficapy/python36
-    - docker push ficapy/docker
-    - docker push ficapy/npm
+  - docker push ficapy/python36
+  - docker push ficapy/docker
+  - docker push ficapy/npm
   on:
     branch: master
 
