@@ -24,12 +24,14 @@ after_script:
 before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
 
-deploy:
-  - docker push ficapy/python36
-  - docker push ficapy/docker
-  - docker push ficapy/npm
-  on:
-    branch: master
+
+after_success:
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
+      docker push ficapy/python36 ;
+      docker push ficapy/docker ;
+      docker push ficapy/npm ;
+    fi
 
 
 
