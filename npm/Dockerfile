@@ -17,5 +17,6 @@ RUN apt update && apt install -y apt-transport-https && echo "deb https://mirror
     && npm set selenium_cdnurl "https://npm.taobao.org/mirrors/selenium"  \
     && npm set node_inspector_cdnurl "https://npm.taobao.org/mirrors/node-inspector"  \
     && npm set selenium_cdnurl "http://npm.taobao.org/mirrors/selenium"   \
-    && npm set node_inspector_cdnurl "https://npm.taobao.org/mirrors/node-inspector"
+    && npm set node_inspector_cdnurl "https://npm.taobao.org/mirrors/node-inspector" \
+    && npm install -g gulp 
 
